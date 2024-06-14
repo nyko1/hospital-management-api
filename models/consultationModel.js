@@ -8,6 +8,14 @@ class ConsultationModel {
         });
     }
 
+    static getAllAppointements(callback) {
+        const query = "SELECT * FROM CONSULTATION WHERE DATERDV !='' ";
+        db.query(query, (error, results) => {
+            callback(error, results);
+        });
+    }
+    
+
     static getConsultationById(id, callback) {
         const query = "SELECT * FROM CONSULTATION WHERE IDCONSULTATION = ?";
         db.query(query, [id], (error, results) => {
@@ -25,9 +33,9 @@ class ConsultationModel {
     }
 
     static updateConsultation(id, consultation, callback) {
-        const { STATUT, DIAGNOSTIC, ACTEMEDICAL, PRESCRIPTION, CONSTANTE } = consultation;
-        const query = `UPDATE CONSULTATION SET STATUT = ?, DIAGNOSTIC = ?, ACTEMEDICAL = ?, PRESCRIPTION = ?, CONSTANTE = ? WHERE IDCONSULTATION = ?`;
-        db.query(query, [STATUT, DIAGNOSTIC, ACTEMEDICAL, PRESCRIPTION, CONSTANTE, id], (error, results) => {
+        const { STATUT, DIAGNOSTIC, ACTEMEDICAL, PRESCRIPTION, CONSTANTE, DATERDV } = consultation;
+        const query = `UPDATE CONSULTATION SET STATUT = ?, DIAGNOSTIC = ?, ACTEMEDICAL = ?, PRESCRIPTION = ?, CONSTANTE = ?, DATERDV = ? WHERE IDCONSULTATION = ?`;
+        db.query(query, [STATUT, DIAGNOSTIC, ACTEMEDICAL, PRESCRIPTION, CONSTANTE, DATERDV, id], (error, results) => {
             callback(error, results);
         });
     }
