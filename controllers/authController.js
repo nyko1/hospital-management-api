@@ -83,7 +83,7 @@ exports.changePassword = (req, res) => {
 
   User.findById(userId, (err, user) => {
     if (err || !user) {
-      return res.status(400).json({ message: 'User not found'});
+      return res.status(400).json({ message: 'User not found' });
     }
 
     bcrypt.compare(oldPassword, user.MOTDEPASSE, (err, isMatch) => {
@@ -102,7 +102,6 @@ exports.changePassword = (req, res) => {
     });
   });
 };
-
 // Fonction pour réinitialiser le mot de passe d'un utilisateur (admin only)
 exports.resetPassword = (req, res) => {
   const id = req.params.id;

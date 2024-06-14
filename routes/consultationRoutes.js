@@ -6,15 +6,15 @@ const consultationController = require('../controllers/consultationController');
 router.get('/consultation-list', consultationController.getConsultations);
 
 // Route to get a specific consultation by ID
-router.get('/consultation/:id', consultationController.getConsultation);
+router.get('/:id', consultationController.getConsultation);
 
 // Route to create a new consultation
-router.post('/consultation-create', consultationController.createConsultation);
+router.post('/create', consultationController.createConsultation);
 
 // Route to update an existing consultation by ID
-router.put('/consultation-update/:id', consultationController.updateConsultation);
+router.put('/update/:id', consultationController.updateConsultation);
 
 // Route to delete a consultation by ID
-router.delete('/consultation-delete/:id', consultationController.deleteConsultation);
+router.delete('/delete/:id', consultationController.deleteConsultation);
 
 module.exports = router;
