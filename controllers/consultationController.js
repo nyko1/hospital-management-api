@@ -10,7 +10,34 @@ exports.getConsultations = (req, res) => {
     });
 };
 
+exports.getAppointements = (req, res) => {
+    ConsultationModel.getAllAppointements((error, results) => {
+        if (error) {
+            console.error('Error fetching appointement:', error);
+            return res.status(500).json({ error: 'Error fetching appointements' });
+        }
+        res.status(200).json(results);
+    });
+};
+
 exports.getConsultation = (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        return res.status(400).json({ error: 'Consultation ID is required' });
+    }
+    ConsultationModel.getConsultationById(id, (error, result) => {
+        if (error) {
+            console.error('Error fetching consultation:', error);
+            return res.status(500).json({ error: 'Error fetching consultation' });
+        }
+        if (!result) {
+            return res.status(404).json({ error: 'Consultation not found' });
+        }
+        res.status(200).json(result);
+    });
+};
+
+exports.getOneAppointement = (req, res) => {
     const { id } = req.params;
     if (!id) {
         return res.status(400).json({ error: 'Consultation ID is required' });
