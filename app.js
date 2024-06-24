@@ -2,15 +2,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); 
 const authRoutes = require('./routes/authRoutes');
-const specialiteRoutes = require('./routes/specialiteRoutes')
+const specialiteRoutes = require('./routes/specialiteRoutes');
 const consultationRoutes = require('./routes/consultationRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 const participerRoutes = require('./routes/participerRoutes');
 
-
 const app = express();
 
-app.use(cors()); 
+// Configurer les options CORS pour autoriser les requêtes depuis http://localhost:4200
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200 // Pour les navigateurs anciens
+};
+
+app.use(cors(corsOptions)); 
+
 // Utiliser le middleware body-parser pour parser le JSON
 app.use(bodyParser.json());
 
