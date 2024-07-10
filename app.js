@@ -11,7 +11,7 @@ const app = express();
 
 // Configurer les options CORS pour autoriser les requêtes depuis http://localhost:4200
 const corsOptions = {
-  origin: 'https://hospital-management-indol.vercel.app',
+  origin: ['https://hospital-management-indol.vercel.app', 'http://localhost:4200'],
   optionsSuccessStatus: 200 // Pour les navigateurs anciens
 };
 
